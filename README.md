@@ -8,11 +8,11 @@ The Bacwn Datalog library is based on the old Clojure-contrib datalog implementa
 
 ## Usage
 
-Caveat emptor. Bacwn is a work in progress and should be considered alpha software.
+Caveat emptor. Bacwn is a work in progress and should be considered alpha software.  The ClojureScript port does not currently work - patches welcomed.
 
 ### Leiningen
 
-    :dependencies [[bacwn "0.1.0"] ...]    
+    :dependencies [[bacwn "0.2.0-SNAPSHOT"] ...]    
 
 ### Maven
 
