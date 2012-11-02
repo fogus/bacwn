@@ -1,6 +1,6 @@
-(ns fogus.bacwn.core-test
+(ns fogus.datalog.bacwn.core-test
   (:use clojure.test
-        fogus.bacwn.core))
+        fogus.datalog.bacwn))
 
 (deftest a-test
   (testing "FIXME, I fail."

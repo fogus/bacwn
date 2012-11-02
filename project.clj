@@ -14,7 +14,8 @@
   :repositories {"sonatype-oss-public" "https://oss.sonatype.org/content/groups/public/"}
   :extra-classpath-dirs ["checkouts/clojurescript/src/clj"
                          "checkouts/clojurescript/src/cljs"]
-  :source-paths ["src/clojure" "test/clojure"]
+  :source-paths ["src/clojure"]
+  :test-paths ["test/clojure"]
   :cljsbuild {:builds [{:source-path "src/main/clojurescript"
                         :compiler {:output-to "resources/public/js/datalog.none.js"
                                    :output-dir "resources/public/js"

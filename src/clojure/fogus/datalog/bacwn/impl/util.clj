@@ -16,7 +16,7 @@
 ;;
 
 
-(ns bacwn.datalog.impl.util)
+(ns fogus.datalog.bacwn.impl.util)
 
 ;; From clojure.contrib.seqs
 (defn separate

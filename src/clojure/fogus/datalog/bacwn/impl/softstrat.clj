@@ -16,13 +16,13 @@
 ;;  Ported to ClojureScript by Fogus 2012.
 ;;
 
-(ns bacwn.datalog.impl.softstrat
-  (:require [bacwn.datalog.impl.util :as util]
-            [bacwn.datalog.impl.database :as db]
-            [bacwn.datalog.impl.literals :as literal]
-            [bacwn.datalog.impl.rules :as rule]
-            [bacwn.datalog.impl.magic :as magic]
-            [bacwn.datalog.impl.graph :as graph]
+(ns fogus.datalog.bacwn.impl.softstrat
+  (:require [fogus.datalog.bacwn.impl.util :as util]
+            [fogus.datalog.bacwn.impl.database :as db]
+            [fogus.datalog.bacwn.impl.literals :as literal]
+            [fogus.datalog.bacwn.impl.rules :as rule]
+            [fogus.datalog.bacwn.impl.magic :as magic]
+            [fogus.datalog.bacwn.impl.graph :as graph]
             clojure.set))
 
 ;; =============================

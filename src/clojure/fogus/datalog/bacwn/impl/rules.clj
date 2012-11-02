@@ -14,10 +14,10 @@
 ;;  Created 2 Feburary 2009
 ;;  Converted to Clojure1.4 by Martin Trojer 2012.
 
-(ns bacwn.datalog.impl.rules
-  (:require [bacwn.datalog.impl.util :as util]
-            [bacwn.datalog.impl.literals :as literal]
-            [bacwn.datalog.impl.database :as db]
+(ns fogus.datalog.bacwn.impl.rules
+  (:require [fogus.datalog.bacwn.impl.util :as util]
+            [fogus.datalog.bacwn.impl.literals :as literal]
+            [fogus.datalog.bacwn.impl.database :as db]
             clojure.set))
 
 (defrecord DatalogRule [head body])

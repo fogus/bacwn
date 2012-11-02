@@ -16,8 +16,8 @@
 ;;  Converted to ClojureScript by Fogus 2012.
 ;;
 
-(ns bacwn.datalog.impl.database
-  (:require [bacwn.datalog.impl.util :as util]
+(ns fogus.datalog.bacwn.impl.database
+  (:require [fogus.datalog.bacwn.impl.util :as util]
             clojure.set))
 
 (defrecord Relation
