@@ -1,9 +1,8 @@
-(ns bacwn.datalog.enghraifft
-  (:use [bacwn.datalwg :as bacwn]
-        [bacwn.datalog :only (build-work-plan run-work-plan)]
-        [bacwn.datalog.impl.rules :only (<- ?- rules-set)]
-        [bacwn.datalog.impl.database :only (make-database add-tuples)]
-        [bacwn.datalog.impl.util :only (*trace-datalog*)]))
+(ns bacwn.example.mst3k
+  (:use [fogus.datalog.bacwn :as bacwn]
+        [fogus.datalog.bacwn.impl.rules :only (<- ?- rules-set)]
+        [fogus.datalog.bacwn.impl.database :only (make-database add-tuples)]
+        [fogus.datalog.bacwn.impl.util :only (*trace-datalog*)]))
 
 (def mst3k-schema
   (make-database
@@ -28,8 +27,8 @@
        (:location  :name ?loc-name :character ?char)
        (:character :character/db.id ?char :name ?char-name))))
 
-(run-work-plan
- (build-work-plan locate-rule
+(bacwn/run-work-plan
+ (bacwn/build-work-plan locate-rule
    (?- :stationed-at :location/name '??loc :character/name ?char-name))
  mst3k-db
  {'??loc "SoL"})
@@ -43,8 +42,8 @@
        (:character :character/db.id ?char :name ?char-name)
        (not! :character :character/db.id ?char :human? true))))
 
-(run-work-plan
- (build-work-plan non-human-locate-rule
+(bacwn/run-work-plan
+ (bacwn/build-work-plan non-human-locate-rule
    (?- :stationed-at :location/name '??loc :character/name ?char-name))
  mst3k-db
  {'??loc "SoL"})
