@@ -12,16 +12,16 @@ Caveat emptor. Bacwn is a work in progress and should be considered alpha softwa
 
 ### Leiningen
 
-    :dependencies [[bacwn "0.2.0-SNAPSHOT"] ...]    
+    :dependencies [[fogus/bacwn "0.2.0"] ...]    
 
 ### Maven
 
 Add the following to your `pom.xml` file:
 
     <dependency>
-      <groupId>evalive</groupId>
+      <groupId>fogus</groupId>
       <artifactId>bacwn</artifactId>
-      <version>0.1.0</version>
+      <version>0.2.0</version>
     </dependency>
 
 ## License
