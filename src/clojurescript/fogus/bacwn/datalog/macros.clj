@@ -1,6 +1,6 @@
 (ns fogus.bacwn.datalog.macros)
 
-#_(defmacro make-database
+(defmacro make-database
   "Makes a database, like this
    (make-database
      (relation :fred [:mary :sue])
@@ -18,7 +18,7 @@
                      `(fogus.bacwn.datalog.impl.database/add-relation ~cur ~(first body) ~(fnext body))
                      (= cmd 'index)
                      `(fogus.bacwn.datalog.impl.database/add-index ~cur ~(first body) ~(fnext body))
-                     :otherwise (throw (js/Error. (str new "not recognized"))))))]
+                     :otherwise (assert nil (str new "not recognized")))))]
     (reduce wrapper `fogus.bacwn.datalog.impl.database/empty-database commands)))
 
 #_(defmacro <-
@@ -26,7 +26,7 @@
 
    (<- (:head :x ?x :y ?y) (:body-1 :x ?x :y ?y) (:body-2 :z ?z) (not! :body-3 :x ?x) (if > ?y ?z))"
   [hd & body]
-  (let [head (fogus.bacwn.datalog.impl.literals/build-atom hd :bacwn.datalog.impl.literals/literal)
+  (let [head (fogus.bacwn.datalog.impl.literals/build-atom hd :fogus.bacwn.datalog.impl.literals/literal)
         body (map fogus.bacwn.datalog.impl.literals/build-literal body)]
     `(is-safe? (fogus.bacwn.datalog.impl.rules/build-rule ~head [~@body]))))
 
