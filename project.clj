@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :plugins [[lein-swank "1.4.4"]
-            [lein-cljsbuild "0.2.5"]
+            [lein-cljsbuild "0.2.9"]
             [lein-marginalia "0.7.1"]
             [lein-multi "1.1.0"]]
   :multi-deps {"1.2" [[org.clojure/clojure "1.2.0"]]
@@ -16,9 +16,9 @@
                          "checkouts/clojurescript/src/cljs"]
   :source-paths ["src/clojure"]
   :test-paths ["test/clojure"]
-  :cljsbuild {:builds [{:source-path "src/main/clojurescript"
-                        :compiler {:output-to "resources/public/js/datalog.none.js"
-                                   :output-dir "resources/public/js"
+  :cljsbuild {:builds [{:source-path "src/clojurescript"
+                        :compiler {:output-to "target/datalog.none.js"
+                                   :output-dir "target/"
                                    :optimizations :none}}]}
   :dependencies [[org.clojure/clojure "1.5.0-master-SNAPSHOT"]])
 
