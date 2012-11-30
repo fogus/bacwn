@@ -16,9 +16,9 @@
 ;;  Converted to ClojureScript by Fogus 2012.
 ;;
 
-(ns cljs.bacwn.datalog.impl.literals
-  (:require [cljs.bacwn.datalog.impl.util :as util]
-            [cljs.bacwn.datalog.impl.database :as db]
+(ns fogus.bacwn.datalog.impl.literals
+  (:require [fogus.bacwn.datalog.impl.util :as util]
+            [fogus.bacwn.datalog.impl.database :as db]
             clojure.set))
 
 ;; =============================

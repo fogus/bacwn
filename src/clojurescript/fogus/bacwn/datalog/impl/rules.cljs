@@ -16,10 +16,10 @@
 ;;  Converted to ClojureScript by Fogus 2012.
 ;;
 
-(ns cljs.bacwn.datalog.impl.rules
-  (:require [cljs.bacwn.datalog.impl.util :as util]
-            [cljs.bacwn.datalog.impl.literals :as literal]
-            [cljs.bacwn.datalog.impl.database :as db]
+(ns fogus.bacwn.datalog.impl.rules
+  (:require [fogus.bacwn.datalog.impl.util :as util]
+            [fogus.bacwn.datalog.impl.literals :as literal]
+            [fogus.bacwn.datalog.impl.database :as db]
             clojure.set))
 
 (defrecord DatalogRule [head body])
@@ -48,9 +48,9 @@
         ehv (clojure.set/difference hv bpv)
         env (clojure.set/difference bnv bpv)]
     (when-not (empty? ehv)
-      (throw (Exception. (str "Head vars" ehv "not bound in body of rule" rule))))
+      (throw (js/Error. (str "Head vars" ehv "not bound in body of rule" rule))))
     (when-not (empty? env)
-      (throw (Exception. (str "Body vars" env "not bound in negative positions of rule" rule))))
+      (throw (js/Error. (str "Body vars" env "not bound in negative positions of rule" rule))))
     rule))
 
 ;; =============================
@@ -60,18 +60,10 @@
   [hd bd]
   (with-meta (->DatalogRule hd bd) {:type ::datalog-rule}))
 
-(defmethod print-method ::datalog-rule
-  [rule ^java.io.Writer writer]
-  (print-method (display-rule rule) writer))
-
 (defn return-rule-data
   "Returns an untypted rule that will be fully printed"
   [rule]
   (with-meta rule {}))
-
-(defmethod print-method ::datalog-query
-  [query ^java.io.Writer writer]
-  (print-method (display-query query) writer))
 
 ;; =============================
 ;; SIP
@@ -117,17 +109,6 @@
   "Given a collection of rules return a rules set"
   [& rules]
   (reduce conj empty-rules-set rules))
-
-(defmethod print-method ::datalog-rules-set
-  [rules ^java.io.Writer writer]
-  (binding [*out* writer]
-    (do
-      (print "(rules-set")
-      (doseq [rule rules]
-        (println)
-        (print "   ")
-        (print rule))
-      (println ")"))))
 
 (defn predicate-map
   "Given a rules-set, return a map of rules keyed by their predicates.

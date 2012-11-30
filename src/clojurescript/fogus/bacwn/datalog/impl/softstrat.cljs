@@ -16,13 +16,13 @@
 ;;  Ported to ClojureScript by Fogus 2012.
 ;;
 
-(ns cljs.bacwn.datalog.impl.softstrat
-  (:require [cljs.bacwn.datalog.impl.util :as util]
-            [cljs.bacwn.datalog.impl.database :as db]
-            [cljs.bacwn.datalog.impl.literals :as literal]
-            [cljs.bacwn.datalog.impl.rules :as rule]
-            [cljs.bacwn.datalog.impl.magic :as magic]
-            [cljs.bacwn.datalog.impl.graph :as graph]
+(ns fogus.bacwn.datalog.impl.softstrat
+  (:require [fogus.bacwn.datalog.impl.util :as util]
+            [fogus.bacwn.datalog.impl.database :as db]
+            [fogus.bacwn.datalog.impl.literals :as literal]
+            [fogus.bacwn.datalog.impl.rules :as rule]
+            [fogus.bacwn.datalog.impl.magic :as magic]
+            [fogus.bacwn.datalog.impl.graph :as graph]
             clojure.set))
 ;; =============================
 ;; Dependency graph

@@ -17,8 +17,8 @@
   :source-paths ["src/clojure"]
   :test-paths ["test/clojure"]
   :cljsbuild {:builds [{:source-path "src/clojurescript"
-                        :compiler {:output-to "target/datalog.none.js"
-                                   :output-dir "target/"
+                        :compiler {:output-to "resources/js/bacwn.none.js"
+                                   :output-dir "resources/js/"
                                    :optimizations :none}}]}
   :dependencies [[org.clojure/clojure "1.5.0-master-SNAPSHOT"]])
 

@@ -16,7 +16,7 @@
 ;;
 
 
-(ns cljs.bacwn.datalog.impl.util)
+(ns fogus.bacwn.datalog.impl.util)
 
 ;; From clojure.contrib.seqs
 (defn separate
@@ -78,4 +78,4 @@
         [complex simple] (separate (fn [[key vals]] (> (count vals) 1)) merged)
         fold-group (fn [[key vals]] {key (reduce f vals)})
         fix-single (fn [[key [val]]] [key val])]
-    (apply merge (concat (pmap fold-group merged) (map fix-single simple)))))
+    (apply merge (concat (map fold-group merged) (map fix-single simple)))))

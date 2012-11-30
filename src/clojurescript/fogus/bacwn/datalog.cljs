@@ -17,10 +17,10 @@
 
 ;;; Please see the example.clj file in the datalog folder
 
-(ns cljs.bacwn.datalog
-  (:require [cljs.bacwn.datalog.impl.softstrat :as soft]
-            cljs.bacwn.datalog.impl.rules
-            cljs.bacwn.datalog.impl.database
+(ns fogus.bacwn.datalog
+  (:require [fogus.bacwn.datalog.impl.softstrat :as soft]
+            fogus.bacwn.datalog.impl.rules
+            fogus.bacwn.datalog.impl.database
             clojure.set))
 
 (defrecord WorkPlan
@@ -36,7 +36,7 @@
     (when (-> common-relations
               empty?
               not)
-      (throw (Exception. (str "The rules and database define the same relation(s):" common-relations))))))
+      (throw (js/Error. (str "The rules and database define the same relation(s):" common-relations))))))
 
 (defn build-work-plan
   "Given a list of rules and a query, build a work plan that can be

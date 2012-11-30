@@ -14,10 +14,10 @@
 ;;  Created 18 Feburary 2009
 ;;  Converted to Clojure1.4 by Martin Trojer 2012.
 
-(ns cljs.bacwn.datalog.impl.magic
-  (:require [cljs.bacwn.datalog.impl.util :as util]
-            [cljs.bacwn.datalog.impl.literals :as literal]
-            [cljs.bacwn.datalog.impl.rules :as rule]
+(ns fogus.bacwn.datalog.impl.magic
+  (:require [fogus.bacwn.datalog.impl.util :as util]
+            [fogus.bacwn.datalog.impl.literals :as literal]
+            [fogus.bacwn.datalog.impl.rules :as rule]
             clojure.set))
 
 ;; =============================

@@ -16,7 +16,7 @@
 ;;  Converted to ClojureScript by Fogus 2012.
 ;;
 
-(ns cljs.bacwn.datalog.impl.graph
+(ns fogus.bacwn.datalog.impl.graph
   (:require clojure.set))
 
 (defrecord DirectedGraph
@@ -168,7 +168,7 @@
   [data fun max equal]
   (let [step (fn step [data idx]
                (when (and idx (= 0 idx))
-                 (throw (Exception. "Fixed point overflow")))
+                 (throw (js/Error. "Fixed point overflow")))
                (let [new-data (fun data)]
                  (if (equal data new-data)
                    new-data
