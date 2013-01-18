@@ -6,6 +6,8 @@ An implementation of Datalog for Clojure, based on the abandoned contrib-datalog
 
 The Bacwn Datalog library is based on the old Clojure-contrib datalog implementation.  The library's syntax will change over time and it will be made to conform to modern Clojure's, but the spirit of the original will remain in tact.
 
+*for a drop-in replacement for the contrib-datalog library see [Martin Trojer's contrib-datalog effort](https://github.com/martintrojer/datalog)*
+
 ## Usage
 
 Caveat emptor. Bacwn is a work in progress and should be considered alpha software.  The ClojureScript port does not currently work - patches welcomed.
