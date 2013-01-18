@@ -1,18 +1,20 @@
 # bacwn
 
-An implementation of Datalog for Clojure, based on the abandoned contrib-datalog.
+An implementation of Datalog for Clojure, based on the abandoned contrib-datalog.  This is not meant as a replacement for the contrib-datalog but instead as an extension to target both Clojure and ClojureScript.
 
 ![bacwn](https://raw.github.com/fogus/bacwn/master/doc/bacwn-logo.png "bacwn is delicious")
 
-The Bacwn Datalog library is based on the old Clojure-contrib datalog implementation.  The library's syntax will change over time and it will be made to conform to modern Clojure's, but the spirit of the original will remain in tact.  To use Bacwn Datalog in your onw libraries, add the following to your dependencies:
+The Bacwn Datalog library is based on the old Clojure-contrib datalog implementation.  The library's syntax will change over time and it will be made to conform to modern Clojure's, but the spirit of the original will remain in tact.
 
 ## Usage
 
 Caveat emptor. Bacwn is a work in progress and should be considered alpha software.  The ClojureScript port does not currently work - patches welcomed.
 
+To use Bacwn in your onw libraries, add the following to your dependencies:
+
 ### Leiningen
 
-    :dependencies [[fogus/bacwn "0.2.0"] ...]    
+    :dependencies [[fogus/bacwn "0.2.0"] ...]
 
 ### Maven
 
