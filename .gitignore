@@ -10,3 +10,4 @@ pom.xml
 .lein-plugins
 *.*~
 resources/js/*
+.DS_Store
