@@ -19,5 +19,5 @@
                         :compiler {:output-to "resources/js/bacwn.none.js"
                                    :output-dir "resources/js/"
                                    :optimizations :none}}]}
-  :dependencies [[org.clojure/clojure "1.5.0"]])
+  :dependencies [[org.clojure/clojure "1.5.1"]])
 
