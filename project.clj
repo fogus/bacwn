@@ -6,11 +6,10 @@
   :plugins [[lein-cljsbuild "0.2.9"]
             [lein-marginalia "0.7.1"]
             [lein-multi "1.1.0"]]
-  :multi-deps {"1.2" [[org.clojure/clojure "1.2.0"]]
-               "1.3" [[org.clojure/clojure "1.3.0"]]
-               "1.4" [[org.clojure/clojure "1.4.0"]]
-               "1.5" [[org.clojure/clojure "1.5.0"]]}
-  :repositories {"sonatype-oss-public" "https://oss.sonatype.org/content/groups/public/"}
+  :profiles {:1.2 {:dependencies [[org.clojure/clojure "1.2.0"]]}
+             :1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
+             :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
+             :1.5 {:dependencies [[org.clojure/clojure "1.5.0"]]}}
   :extra-classpath-dirs ["checkouts/clojurescript/src/clj"
                          "checkouts/clojurescript/src/cljs"]
   :source-paths ["src/clojure"]
