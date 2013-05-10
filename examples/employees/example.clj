@@ -95,9 +95,9 @@
    (<- (:bj :name ?x :boss ?y) (:works-for :employee ?x :boss ?y)
        (not! :employee-job :employee ?y :job :pc-support))))
 
-(comment
+(def wp-1 (build-work-plan rules (?- :works-for :employee '??name :boss ?x)))
 
-  (def wp-1 (build-work-plan rules (?- :works-for :employee '??name :boss ?x)))
+(comment
   (run-work-plan wp-1 db {'??name "Albert"})
   ;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
 
