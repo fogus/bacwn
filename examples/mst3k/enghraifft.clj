@@ -1,8 +1,8 @@
 (ns bacwn.example.mst3k
   (:use [fogus.datalog.bacwn :as bacwn]
-        [fogus.datalog.bacwn.impl.rules :only (<- ?- rules-set)]
-        [fogus.datalog.bacwn.impl.database :only (make-database add-tuples)]
-        [fogus.datalog.bacwn.impl.util :only (*trace-datalog*)]))
+        [fogus.datalog.bacwn.macros :only (<- ?- make-database)]
+        [fogus.datalog.bacwn.impl.rules :only (rules-set)]        
+        [fogus.datalog.bacwn.impl.database :only (add-tuples)]))
 
 (def mst3k-schema
   (make-database
