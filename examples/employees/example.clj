@@ -96,20 +96,20 @@
        (not! :employee-job :employee ?y :job :pc-support))))
 
 (def wp-1 (build-work-plan rules (?- :works-for :employee '??name :boss ?x)))
+(def wp-2 (build-work-plan rules (?- :employee-job :employee '??name :job ?x)))
+(def wp-3 (build-work-plan rules (?- :bj :name '??name :boss ?x)))
+(def wp-4 (build-work-plan rules (?- :works-for :employee ?x :boss ?y)))
 
 (comment
   (run-work-plan wp-1 db {'??name "Albert"})
   ;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
 
-  (def wp-2 (build-work-plan rules (?- :employee-job :employee '??name :job ?x)))
   (run-work-plan wp-2 db {'??name "Li"})
   ;; ({:job :server-support, :employee "Li"} {:job :pc-support, :employee "Li"})
 
-  (def wp-3 (build-work-plan rules (?- :bj :name '??name :boss ?x)))
   (run-work-plan wp-3 db {'??name "Albert"})
   ;; ({:boss "Sameer", :name "Albert"})
 
-  (def wp-4 (build-work-plan rules (?- :works-for :employee ?x :boss ?y)))
   (run-work-plan wp-4 db {})
   ;; ({:boss "Bob", :employee "Miki"} {:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Lilian"} {:boss "Bob", :employee "Li"} {:boss "Bob", :employee "Lilian"} {:boss "Fred", :employee "Brenda"} {:boss "Bob", :employee "Fred"} {:boss "Bob", :employee "John"} {:boss "Mary", :employee "John"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Sameer"} {:boss "Bob", :employee "Albert"} {:boss "Bob", :employee "Brenda"} {:boss "Bob", :employee "Mary"} {:boss "Sameer", :employee "Li"})
 
