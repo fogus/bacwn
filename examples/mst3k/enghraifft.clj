@@ -48,7 +48,12 @@
  mst3k-db
  {'??loc "SoL"})
 
+;;=> ({:location/name "SoL", :character/name "Crow"})
+
 (q (?- :stationed-at :location/name '??loc :character/name ?char-name)
    mst3k-db
    non-human-locate-rule
    {'??loc "SoL"})
+
+;;=> ({:location/name "SoL", :character/name "Crow"})
+
