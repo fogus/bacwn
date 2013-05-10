@@ -6,10 +6,10 @@
 
 (def mst3k-schema
   (make-database
-   (relation :character [:character/db.id :name :human?])
+   (relation :character [:db.id :name :human?])
    (index :character :name)
 
-   (relation :location [:location/db.id :character :name])
+   (relation :location [:db.id :character :name])
    (index :location :name)))
 
 (def mst3k-db

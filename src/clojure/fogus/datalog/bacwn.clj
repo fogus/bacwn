@@ -13,7 +13,7 @@
         id  (get entity id-key)
         kvs (seq (dissoc entity id-key))]
     (vec
-     (apply concat [relation-type id-key id]
+     (apply concat [relation-type :db.id id]
             (reduce (fn [acc [k v]]
                       (cons [(keyword (name k)) v] acc))
                     []
@@ -98,4 +98,11 @@
           (println "        " (get-in rel [:indexes key val])))
         (println "    }"))
       (println "  })"))))
+
+
+(comment
+
+  (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
+
+)
 
