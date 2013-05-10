@@ -15,10 +15,10 @@
 ;;  Converted to Clojure1.4 by Martin Trojer 2012.
 
 (ns bacwn.datalog.example
-  (:use [bacwn.datalog :only (build-work-plan run-work-plan)]
-        [bacwn.datalog.impl.rules :only (<- ?- rules-set)]
-        [bacwn.datalog.impl.database :only (make-database add-tuples)]
-        [bacwn.datalog.impl.util :only (*trace-datalog*)]))
+  (:use [fogus.datalog.bacwn :only (build-work-plan run-work-plan)]
+        [fogus.datalog.bacwn.macros :only (<- ?- make-database)]
+        [fogus.datalog.bacwn.impl.rules :only (rules-set)]
+        [fogus.datalog.bacwn.impl.database :only (add-tuples)]))
 
 (def db-base
   (make-database
@@ -100,8 +100,7 @@
 ;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
 
 (def wp-2 (build-work-plan rules (?- :employee-job :employee '??name :job ?x)))
-(binding [*trace-datalog* true]
-  (run-work-plan wp-2 db {'??name "Li"}))
+(run-work-plan wp-2 db {'??name "Li"})
 ;; ({:job :server-support, :employee "Li"} {:job :pc-support, :employee "Li"})
 
 (def wp-3 (build-work-plan rules (?- :bj :name '??name :boss ?x)))
