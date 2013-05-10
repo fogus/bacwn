@@ -104,5 +104,10 @@
 
   (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
 
-)
+  (defn agg [tuples]
+    tuples)
+
+
+  
+ )
 
