@@ -105,11 +105,10 @@
   (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
 
   (defn agg [tuples]
-    tuples)
+    (group-by (comp namespace second) tuples))
 
   (agg
    '[[#bacwn/id :joel, :character/name     "Joel"]
      [#bacwn/id :joel, :character/human?   true]])
-  
- )
+)
 
