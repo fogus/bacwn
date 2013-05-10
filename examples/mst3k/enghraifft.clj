@@ -25,7 +25,7 @@
   (rules-set
    (<- (:stationed-at :location/name ?loc-name :character/name ?char-name)
        (:location  :name ?loc-name :character ?char)
-       (:character :character/db.id ?char :name ?char-name))))
+       (:character :db.id ?char :name ?char-name))))
 
 (bacwn/run-work-plan
  (bacwn/build-work-plan locate-rule
