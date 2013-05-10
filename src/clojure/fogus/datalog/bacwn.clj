@@ -107,7 +107,9 @@
   (defn agg [tuples]
     tuples)
 
-  
+  (agg
+   '[[#bacwn/id :joel, :character/name     "Joel"]
+     [#bacwn/id :joel, :character/human?   true]])
   
  )
 
