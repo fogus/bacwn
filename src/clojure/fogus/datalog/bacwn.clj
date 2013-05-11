@@ -109,6 +109,8 @@
 
   (explode {:character/name "Joel" :character/human? true})
 
+  (explode {:character/db.id #bacwn/id :joel :character/name "Joel" :character/human? true})
+
   (defn agg [tuples]
     (group-by (comp namespace second) tuples))
 
