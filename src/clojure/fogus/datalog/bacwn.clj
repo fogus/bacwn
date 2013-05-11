@@ -4,6 +4,8 @@
             [fogus.datalog.bacwn.impl.softstrat :as soft]
             clojure.set))
 
+(def ^:private ids (atom 0))
+
 (defn- explode
   "Convert a map into a clj-Datalog tuple vector. Brittle, but
    works along the happy path."
@@ -11,6 +13,7 @@
   (let [relation-type (-> entity seq ffirst namespace keyword)
         id-key (keyword (name relation-type) "db.id")
         id  (get entity id-key)
+        id  (if id id (swap! ids inc))
         kvs (seq (dissoc entity id-key))]
     (vec
      (apply concat [relation-type :db.id id]
@@ -103,6 +106,8 @@
 (comment
 
   (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
+
+  (explode {:character/name "Joel" :character/human? true})
 
   (defn agg [tuples]
     (group-by (comp namespace second) tuples))
