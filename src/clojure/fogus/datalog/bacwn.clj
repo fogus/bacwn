@@ -129,7 +129,7 @@
              [nspace
               ID_KEY (get (swap! ids
                                  (fn [m]
-                                   (if-let [i (get id m)]
+                                   (if-let [i (get m id)]
                                      m
                                      (let  [i (swap! nums inc)]
                                        (assoc m id i)))))
