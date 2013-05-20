@@ -111,24 +111,25 @@
          (for [[k v] agg]
            (map #(vec (cons k %)) v))))
 
-  (defn shuffle-tuples [tups]
-    (let [nums (atom 0)
-          ids  (atom {})]
-      (map (fn [[nspace id prop val]]
-             [nspace
-              ID_KEY (get (swap! ids
-                                 (fn [m]
-                                   (if-let [i (get m id)]
-                                     m
-                                     (let  [i (swap! nums inc)]
-                                       (assoc m id i)))))
-                          id)
-              (keyword (name prop)) val])
-           tups)))
+(def nums (atom 0))
+
+(defn shuffle-tuples [tups]
+  (let [ids (atom {})]
+    (map (fn [[nspace id prop val]]
+           [nspace
+            ID_KEY (get (swap! ids
+                               (fn [m]
+                                 (if-let [i (get m id)]
+                                   m
+                                   (let  [i (swap! nums inc)]
+                                     (assoc m id i)))))
+                        id)
+            (keyword (name prop)) val])
+         tups)))
 
 (comment
 
-  (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
+  (explode {:character/name "Joel" :character/human? true})
   ;;=> [:character :db.id 0 :human? true :name "Joel"]
  
   (def tuples
@@ -136,7 +137,6 @@
      [#bacwn/id :joel, :character/human? true]
      [#bacwn/id :joel, :person/age       42]
      [#bacwn/id :crow, :character/name   "Crow"]])
-
  
   (->> tuples
        agg
