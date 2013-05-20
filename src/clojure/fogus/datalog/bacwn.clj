@@ -122,9 +122,18 @@
      [#bacwn/id :joel, :person/age       42]])
 
   (defn shuffle-tuples [tups]
-    (map (fn [[nspace id prop val]]
-           [nspace ID_KEY :foo (keyword (name prop)) val])
-         tups))
+    (let [nums (atom 0)
+          ids  (atom {})]
+      (map (fn [[nspace id prop val]]
+             [nspace
+              ID_KEY (swap! ids
+                            (fn [m]
+                              (if-let [i (get id m)]
+                                m
+                                (let  [i (swap! nums inc)]
+                                  (assoc m id i)))))
+              (keyword (name prop)) val])
+           tups)))
   
   (-> tuples
       agg
