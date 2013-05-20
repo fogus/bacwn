@@ -5,6 +5,7 @@
             clojure.set))
 
 (def ID_KEY :db.id)
+(def ^:private nums (atom 0))
 
 (defn- explode
   "Convert a map into a clj-Datalog tuple vector. Brittle, but
@@ -13,6 +14,7 @@
   (let [relation-type (-> entity seq ffirst namespace keyword)
         id-key (keyword (name relation-type) "db.id")
         id  (get entity id-key)
+        id  (if id id (swap! ids inc))
         kvs (seq (dissoc entity id-key))]
     (vec
      (apply concat [relation-type :db.id id]
@@ -111,8 +113,6 @@
          (for [[k v] agg]
            (map #(vec (cons k %)) v))))
 
-(def nums (atom 0))
-
 (defn shuffle-tuples [tups]
   (let [ids (atom {})]
     (map (fn [[nspace id prop val]]
@@ -149,7 +149,14 @@
 
   (normalize (conj tuples tom))
   
-  (->> (conj tuples tom)
+  (->> tuples
+       normalize
+       agg
+       propagate
+       shuffle-tuples
+       (sort-by #(nth % 2)))
+
+    (->> (conj tuples tom)
        normalize
        agg
        propagate
