@@ -4,6 +4,8 @@
             [fogus.datalog.bacwn.impl.softstrat :as soft]
             clojure.set))
 
+(def ID_KEY :db.id)
+
 (defn- explode
   "Convert a map into a clj-Datalog tuple vector. Brittle, but
    works along the happy path."
@@ -121,7 +123,7 @@
 
   (defn shuffle-tuples [tups]
     (map (fn [[nspace id prop val]]
-           [nspace :foo (keyword (name prop)) val])
+           [nspace ID_KEY :foo (keyword (name prop)) val])
          tups))
   
   (-> tuples
