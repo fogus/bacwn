@@ -111,17 +111,6 @@
          (for [[k v] agg]
            (map #(vec (cons k %)) v))))
 
-(comment
-
-  (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
-  ;;=> [:character :db.id 0 :human? true :name "Joel"]
- 
-  (def tuples
-   '[[#bacwn/id :joel, :character/name   "Joel"]
-     [#bacwn/id :joel, :character/human? true]
-     [#bacwn/id :joel, :person/age       42]
-     [#bacwn/id :crow, :character/name   "Crow"]])
-
   (defn shuffle-tuples [tups]
     (let [nums (atom 0)
           ids  (atom {})]
@@ -136,7 +125,19 @@
                           id)
               (keyword (name prop)) val])
            tups)))
-  
+
+(comment
+
+  (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
+  ;;=> [:character :db.id 0 :human? true :name "Joel"]
+ 
+  (def tuples
+   '[[#bacwn/id :joel, :character/name   "Joel"]
+     [#bacwn/id :joel, :character/human? true]
+     [#bacwn/id :joel, :person/age       42]
+     [#bacwn/id :crow, :character/name   "Crow"]])
+
+ 
   (->> tuples
        agg
        propagate
