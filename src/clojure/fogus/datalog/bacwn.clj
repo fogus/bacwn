@@ -137,9 +137,10 @@
               (keyword (name prop)) val])
            tups)))
   
-  (-> tuples
-      agg
-      propagate
-      shuffle-tuples)
+  (->> tuples
+       agg
+       propagate
+       shuffle-tuples
+       (sort-by #(nth % 2)))
 )
 
