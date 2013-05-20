@@ -99,13 +99,14 @@
         (println "    }"))
       (println "  })"))))
 
+;; WiP
+
+(defn agg [tuples]
+  (group-by (comp namespace second) tuples))
 
 (comment
 
   (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
-
-  (defn agg [tuples]
-    (group-by (comp namespace second) tuples))
 
   (agg
    '[[#bacwn/id :joel, :character/name     "Joel"]
