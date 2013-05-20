@@ -104,16 +104,16 @@
 (defn agg [tuples]
   (group-by (comp keyword namespace second) tuples))
 
+(defn propagate [agg]
+  (apply concat
+         (for [[k v] agg]
+           (map #(vec (cons k %)) v))))
+
 (comment
 
   (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
   ;;=> [:character :db.id 0 :human? true :name "Joel"]
-
-  (defn propagate [agg]
-    (apply concat
-           (for [[k v] agg]
-             (map #(vec (cons k %)) v))))
-  
+ 
   (def tuples
    '[[#bacwn/id :joel, :character/name   "Joel"]
      [#bacwn/id :joel, :character/human? true]
