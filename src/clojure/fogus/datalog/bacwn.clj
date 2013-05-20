@@ -126,12 +126,13 @@
           ids  (atom {})]
       (map (fn [[nspace id prop val]]
              [nspace
-              ID_KEY (swap! ids
-                            (fn [m]
-                              (if-let [i (get id m)]
-                                m
-                                (let  [i (swap! nums inc)]
-                                  (assoc m id i)))))
+              ID_KEY (get (swap! ids
+                                 (fn [m]
+                                   (if-let [i (get id m)]
+                                     m
+                                     (let  [i (swap! nums inc)]
+                                       (assoc m id i)))))
+                          id)
               (keyword (name prop)) val])
            tups)))
   
