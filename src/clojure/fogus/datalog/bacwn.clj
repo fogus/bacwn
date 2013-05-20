@@ -119,8 +119,14 @@
      [#bacwn/id :joel, :character/human? true]
      [#bacwn/id :joel, :person/age       42]])
 
+  (defn shuffle-tuples [tups]
+    (map (fn [[nspace id prop val]]
+           [nspace :foo (keyword (name prop)) val])
+         tups))
+  
   (-> tuples
       agg
-      propagate)
+      propagate
+      shuffle-tuples)
 )
 
