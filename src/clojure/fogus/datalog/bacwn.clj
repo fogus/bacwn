@@ -109,7 +109,8 @@
   (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
 
   (agg
-   '[[#bacwn/id :joel, :character/name     "Joel"]
-     [#bacwn/id :joel, :character/human?   true]])
+   '[[#bacwn/id :joel, :character/name   "Joel"]
+     [#bacwn/id :joel, :character/human? true]
+     [#bacwn/id :joel, :person/age       42]])
 )
 
