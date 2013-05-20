@@ -129,7 +129,9 @@
 
 (comment
 
-  (explode {:character/name "Joel" :character/human? true})
+  (def tom {:character/name "Tom Servo" :character/human? false})
+  
+  (explode tom)
   ;;=> [:character :db.id 0 :human? true :name "Joel"]
  
   (def tuples
@@ -137,7 +139,12 @@
      [#bacwn/id :joel, :character/human? true]
      [#bacwn/id :joel, :person/age       42]
      [#bacwn/id :crow, :character/name   "Crow"]])
- 
+
+  (defn normalize [tuples]
+    tuples)
+
+  (normalize (conj tuples tom))
+  
   (->> tuples
        agg
        propagate
