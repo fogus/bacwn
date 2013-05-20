@@ -119,7 +119,8 @@
   (def tuples
    '[[#bacwn/id :joel, :character/name   "Joel"]
      [#bacwn/id :joel, :character/human? true]
-     [#bacwn/id :joel, :person/age       42]])
+     [#bacwn/id :joel, :person/age       42]
+     [#bacwn/id :crow, :character/name   "Crow"]])
 
   (defn shuffle-tuples [tups]
     (let [nums (atom 0)
