@@ -143,7 +143,7 @@
   (defn normalize [tuples]
     (mapcat (fn [segment]
               (if (map? segment)
-                []
+                [(explode segment)]
                 [segment]))
             tuples))
 
