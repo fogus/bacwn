@@ -102,15 +102,21 @@
 ;; WiP
 
 (defn agg [tuples]
-  (group-by (comp namespace second) tuples))
+  (group-by (comp keyword namespace second) tuples))
 
 (comment
 
   (explode {:character/db.id 0 :character/name "Joel" :character/human? true})
+  ;;=> [:character :db.id 0 :human? true :name "Joel"]
 
-  (agg
+
+  
+  (def tuples
    '[[#bacwn/id :joel, :character/name   "Joel"]
      [#bacwn/id :joel, :character/human? true]
      [#bacwn/id :joel, :person/age       42]])
+
+  (-> tuples
+      agg)
 )
 
