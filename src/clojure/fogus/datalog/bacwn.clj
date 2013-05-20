@@ -141,11 +141,16 @@
      [#bacwn/id :crow, :character/name   "Crow"]])
 
   (defn normalize [tuples]
-    tuples)
+    (mapcat (fn [segment]
+              (if (map? segment)
+                []
+                [segment]))
+            tuples))
 
   (normalize (conj tuples tom))
   
-  (->> tuples
+  (->> (conj tuples tom)
+       normalize
        agg
        propagate
        shuffle-tuples
