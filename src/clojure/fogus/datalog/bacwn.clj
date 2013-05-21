@@ -148,6 +148,8 @@
             tuples))
 
   (normalize (conj tuples tom))
+  (split-at 3 (first (normalize [tom])))
+  (shuffle-tuples (propagate (agg tuples)))
   
   (->> tuples
        normalize
