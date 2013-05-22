@@ -147,8 +147,11 @@
                 [segment]))
             tuples))
 
-  (normalize (conj tuples tom))
-  (split-at 3 (first (normalize [tom])))
+  (defn split-tuple [tuple]
+    (let [[head tails] (split-at 3 tuple)]
+      (map #(vec (concat head %)) (partition 2 tails))))
+  
+  (split-tuple (first (normalize [tom])))
   (shuffle-tuples (propagate (agg tuples)))
   
   (->> tuples
