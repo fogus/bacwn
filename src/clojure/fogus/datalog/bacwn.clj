@@ -2,6 +2,7 @@
   (:require [fogus.datalog.bacwn.impl.database :as db]
             [fogus.datalog.bacwn.impl.rules :as rules]
             [fogus.datalog.bacwn.impl.softstrat :as soft]
+            [fogus.datalog.bacwn.impl.syntax :as syntax]
             clojure.set))
 
 (def ID_KEY :db.id)
