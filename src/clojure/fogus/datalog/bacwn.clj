@@ -14,7 +14,7 @@
   (let [relation-type (-> entity seq ffirst namespace keyword)
         id-key (keyword (name relation-type) "db.id")
         id  (get entity id-key)
-        id  (if id id (swap! ids inc))
+        id  (if id id (swap! nums inc))
         kvs (seq (dissoc entity id-key))]
     (vec
      (apply concat [relation-type :db.id id]
