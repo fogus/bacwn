@@ -143,7 +143,7 @@
   (defn normalize [tuples]
     (mapcat (fn [segment]
               (if (map? segment)
-                [(explode segment)]
+                (split-tuple (explode segment))
                 [segment]))
             tuples))
 
@@ -152,7 +152,9 @@
       (map #(vec (concat head %)) (partition 2 tails))))
   
   (split-tuple (first (normalize [tom])))
-  (shuffle-tuples (propagate (agg tuples)))
+
+  (explode tom)
+  (normalize (conj tuples tom))
   
   (->> tuples
        normalize
