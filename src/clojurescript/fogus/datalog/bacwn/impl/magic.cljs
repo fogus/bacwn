@@ -14,10 +14,10 @@
 ;;  Created 18 Feburary 2009
 ;;  Converted to Clojure1.4 by Martin Trojer 2012.
 
-(ns fogus.bacwn.datalog.impl.magic
-  (:require [fogus.bacwn.datalog.impl.util :as util]
-            [fogus.bacwn.datalog.impl.literals :as literal]
-            [fogus.bacwn.datalog.impl.rules :as rule]
+(ns fogus.datalog.bacwn.impl.magic
+  (:require [fogus.datalog.bacwn.impl.util :as util]
+            [fogus.datalog.bacwn.impl.literals :as literal]
+            [fogus.datalog.bacwn.impl.rules :as rule]
             clojure.set))
 
 ;; =============================
@@ -112,7 +112,7 @@
                       body (:body rule)
                       mh (literal/magic-literal head)
                       answer-rule (rule/build-rule head
-                                              (concat [mh] body))
+                                                   (concat [mh] body))
                       step (fn [[rs bd] l]
                              (if (and (i-preds (literal/literal-predicate l))
                                       (not-duplicate? l mh bd))
@@ -123,4 +123,3 @@
                       [nrs _] (reduce step [rs []] body)]
                   (conj nrs answer-rule)))]
        (reduce xr rule/empty-rules-set rs))))
-

@@ -16,7 +16,7 @@
 ;;
 
 
-(ns fogus.bacwn.datalog.impl.util)
+(ns fogus.datalog.bacwn.impl.util)
 
 ;; From clojure.contrib.seqs
 (defn separate
@@ -64,7 +64,7 @@
 
 
 ;;; Preduce -- A parallel reduce over hashes
-  
+
 (defn preduce
   "Similar to merge-with, but the contents of each key are merged in
    parallel using f.
@@ -74,7 +74,7 @@
   [f data]
   (let [data-1 (map (fn [h] (map-values #(list %) h)) data)
         merged (doall (apply merge-with concat data-1))
-        ; Groups w/ multiple elements are identified for parallel processing
+                                        ; Groups w/ multiple elements are identified for parallel processing
         [complex simple] (separate (fn [[key vals]] (> (count vals) 1)) merged)
         fold-group (fn [[key vals]] {key (reduce f vals)})
         fix-single (fn [[key [val]]] [key val])]

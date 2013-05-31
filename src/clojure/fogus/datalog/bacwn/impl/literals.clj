@@ -403,3 +403,6 @@
                     (db/add-tuple rel tuple)))]
        (db/replace-relation db rel-name (reduce step rel bs)))))
 
+(defmethod print-method AtomicLiteral
+  [query ^java.io.Writer writer]
+  (.write writer (pr-str (list* '?- (display-literal query)))))

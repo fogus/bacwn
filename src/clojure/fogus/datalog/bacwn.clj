@@ -1,5 +1,6 @@
 (ns fogus.datalog.bacwn
-  (:require [fogus.datalog.bacwn.impl.database :as db]
+  (:require [fogus.datalog.bacwn.macros :refer [facts]]
+            [fogus.datalog.bacwn.impl.database :as db]
             [fogus.datalog.bacwn.impl.rules :as rules]
             [fogus.datalog.bacwn.impl.softstrat :as soft]
             [fogus.datalog.bacwn.impl.syntax :as syntax]
@@ -32,10 +33,6 @@
   [work-plan database query-bindings]
   (validate-work-plan work-plan database)
   (soft/evaluate-soft-work-set (:work-plan work-plan) database query-bindings))
-
-(defmacro facts [db & tuples]
-  `(db/add-tuples ~db
-    ~@(map explode tuples)))
 
 ;; querying
 

@@ -16,9 +16,9 @@
 ;;  Converted to ClojureScript by Fogus 2012.
 ;;
 
-(ns fogus.bacwn.datalog.impl.literals
-  (:require [fogus.bacwn.datalog.impl.util :as util]
-            [fogus.bacwn.datalog.impl.database :as db]
+(ns fogus.datalog.bacwn.impl.literals
+  (:require [fogus.datalog.bacwn.impl.util :as util]
+            [fogus.datalog.bacwn.impl.database :as db]
             clojure.set))
 
 ;; =============================
@@ -205,7 +205,7 @@
   [l bound]
   (reduce conj
           #{}
-          (remove nil? 
+          (remove nil?
                   (map (fn [[k v]] (if (bound v) k nil))
                        (:term-bindings l)))))
 
@@ -265,7 +265,9 @@
 (defn get-adorned-bindings
   "Get the bindings from this adorned literal."
   [pred]
-  (:bound pred))
+  (try
+    (:bound pred)
+    (catch js/Error e nil)))
 
 (defn get-base-predicate
   "Get the base predicate from this predicate."
@@ -318,7 +320,7 @@
         pred (if (map? pred*) pred* {:pred pred*})]
     (assoc l :predicate (assoc pred :delta true))))
 
-;; =============================        
+;; =============================
 ;; Database operations
 
 (defn- build-partial-tuple
@@ -402,3 +404,11 @@
                         tuple (reduce step {} (:term-bindings lit))]
                     (db/add-tuple rel tuple)))]
        (db/replace-relation db rel-name (reduce step rel bs)))))
+
+(cljs.reader/register-tag-parser! "fogus.datalog.bacwn.impl.literals.AtomicLiteral"
+                                  map->AtomicLiteral)
+
+(extend-protocol IPrintWithWriter
+   fogus.datalog.bacwn.impl.literals/AtomicLiteral
+   (-pr-writer [query writer opts]
+     (write-all writer (pr-str (list* '?- (display-literal query))))))
