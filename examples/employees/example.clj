@@ -96,26 +96,11 @@
    (<- (:bj :name ?x :boss ?y) (:works-for :employee ?x :boss ?y)
        (not! :employee-job :employee ?y :job :pc-support))))
 
-
-(defn vec->map [v]
-  (reduce into (map vec (partition 2 v))))
-
-(defn ??- [n & args]
-  (literals/->AtomicLiteral n (vec->map args)
-   :fogus.datalog.bacwn.impl.literals/literal))
-
-(??- :works-for :employee '??name :boss '?x)
-
-(def wp-0 (build-work-plan rules (literals/->AtomicLiteral
-                                  :works-for {:boss '?x, :employee '??name}
-                                  :fogus.datalog.bacwn.impl.literals/literal)))
 (def wp-1 (build-work-plan rules (?- :works-for :employee '??name :boss ?x)))
 (def wp-2 (build-work-plan rules (?- :employee-job :employee '??name :job ?x)))
 (def wp-3 (build-work-plan rules (?- :bj :name '??name :boss ?x)))
 (def wp-4 (build-work-plan rules (?- :works-for :employee ?x :boss ?y)))
 
-
-(run-work-plan wp-0 db {'??name "Mary"})
 
 (run-work-plan wp-1 db {'??name "Mary"})
 ;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
