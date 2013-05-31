@@ -13,14 +13,13 @@
 ;;  straszheimjeffrey (gmail)
 ;;  Created 2 Feburary 2009
 ;;  Converted to Clojure1.4 by Martin Trojer 2012.
-;;  Converted to ClojureScript by Fogus 2012.
-;;
 
-(ns fogus.bacwn.datalog.impl.rules
-  (:require [fogus.bacwn.datalog.impl.util :as util]
-            [fogus.bacwn.datalog.impl.literals :as literal]
-            [fogus.bacwn.datalog.impl.database :as db]
-            clojure.set))
+(ns fogus.datalog.bacwn.impl.rules
+  (:require [fogus.datalog.bacwn.impl.util :as util]
+            [fogus.datalog.bacwn.impl.literals :as literal]
+            [fogus.datalog.bacwn.impl.database :as db]
+            clojure.set
+            cljs.reader))
 
 (defrecord DatalogRule [head body])
 
@@ -60,10 +59,22 @@
   [hd bd]
   (with-meta (->DatalogRule hd bd) {:type ::datalog-rule}))
 
+(cljs.reader/register-tag-parser! "fogus.datalog.bacwn.impl.rules.DatalogRule"
+                                  map->DatalogRule)
+
+(extend-protocol IPrintWithWriter
+   fogus.datalog.bacwn.impl.rules/DatalogRule
+   (-pr-writer [rule writer opts]
+     (write-all writer (pr-str (display-rule rule)))))
+
 (defn return-rule-data
   "Returns an untypted rule that will be fully printed"
   [rule]
   (with-meta rule {}))
+
+;(defmethod print-method ::datalog-query
+;  [query ^java.io.Writer writer]
+;  (print-method (display-query query) writer))
 
 ;; =============================
 ;; SIP
@@ -109,6 +120,17 @@
   "Given a collection of rules return a rules set"
   [& rules]
   (reduce conj empty-rules-set rules))
+
+;(defmethod print-method ::datalog-rules-set
+;  [rules ^java.io.Writer writer]
+;  (binding [*out* writer]
+;    (do
+;      (print "(rules-set")
+;      (doseq [rule rules]
+;        (println)
+;        (print "   ")
+;        (print rule))
+;      (println ")"))))
 
 (defn predicate-map
   "Given a rules-set, return a map of rules keyed by their predicates.
@@ -157,4 +179,3 @@
   [db rs]
   (reduce (fn [rdb rule]
             (apply-rule db rdb rule)) db rs))
-

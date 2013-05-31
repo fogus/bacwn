@@ -1,27 +1,9 @@
-;;  Copyright (c) Jeffrey Straszheim. All rights reserved.  The use and
-;;  distribution terms for this software are covered by the Eclipse Public
-;;  License 1.0 (http://opensource.org/licenses/eclipse-1.0.php) which can
-;;  be found in the file epl-v10.html at the root of this distribution.  By
-;;  using this software in any fashion, you are agreeing to be bound by the
-;;  terms of this license.  You must not remove this notice, or any other,
-;;  from this software.
-;;
-;;  datalog.clj
-;;
-;;  A Clojure implementation of Datalog
-;;
-;;  straszheimjeffrey (gmail)
-;;  Created 2 March 2009
-;;  Converted to Clojure1.4 by Martin Trojer 2012.
-;;  Converted to ClojureScript by Fogus 2012.
-
-;;; Please see the example.clj file in the datalog folder
-
-(ns fogus.bacwn.datalog
-  (:require [fogus.bacwn.datalog.impl.softstrat :as soft]
-            fogus.bacwn.datalog.impl.rules
-            fogus.bacwn.datalog.impl.database
-            clojure.set))
+(ns fogus.datalog.bacwn
+  (:require [fogus.datalog.bacwn.impl.database :as db]
+            [fogus.datalog.bacwn.impl.rules :as rules]
+            [fogus.datalog.bacwn.impl.softstrat :as soft]
+            [fogus.datalog.bacwn.impl.syntax :as syntax]
+            [clojure.set :as sets]))
 
 (defrecord WorkPlan
   [work-plan        ; The underlying structure
@@ -50,3 +32,12 @@
   [work-plan database query-bindings]
   (validate-work-plan work-plan database)
   (soft/evaluate-soft-work-set (:work-plan work-plan) database query-bindings))
+
+;; querying
+
+(defn q
+  [query db rules bindings]
+  (run-work-plan
+   (build-work-plan rules query)
+   db
+   bindings))

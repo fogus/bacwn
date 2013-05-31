@@ -16,7 +16,7 @@
 ;;  Converted to ClojureScript by Fogus 2012.
 ;;
 
-(ns fogus.bacwn.datalog.impl.graph
+(ns fogus.datalog.bacwn.impl.graph
   (:require clojure.set))
 
 (defrecord DirectedGraph

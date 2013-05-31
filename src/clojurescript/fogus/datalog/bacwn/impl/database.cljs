@@ -16,8 +16,8 @@
 ;;  Converted to ClojureScript by Fogus 2012.
 ;;
 
-(ns fogus.bacwn.datalog.impl.database
-  (:require [fogus.bacwn.datalog.impl.util :as util]
+(ns fogus.datalog.bacwn.impl.database
+  (:require [fogus.datalog.bacwn.impl.util :as util]
             clojure.set))
 
 (defrecord Relation
@@ -174,7 +174,7 @@
         idxs (find-indexes (:indexes rel) pt)
         space (if (empty? idxs)
                 (:data rel) ; table scan :(
-                (reduce clojure.set/intersection idxs))] 
+                (reduce clojure.set/intersection idxs))]
     (fun #(match? % pt) space)))
 
 (defn select
