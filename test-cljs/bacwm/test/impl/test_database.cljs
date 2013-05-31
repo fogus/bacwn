@@ -15,8 +15,9 @@
 
 
 (ns bacwn.test.impl.test_database
-  (:use-macros [clojure.test :only [deftest is]]
+  (:use-macros [cemerick.cljs.test :only (is deftest with-test run-tests testing)]
                [fogus.datalog.bacwn.macros :only (<- ?- make-database)])
+  (:require [cemerick.cljs.test :as t])
   (:use [fogus.datalog.bacwn.impl.database :only [add-tuples add-tuple remove-tuple any-match? select datalog-database datalog-relation ensure-relation]]))
 
 (def test-db

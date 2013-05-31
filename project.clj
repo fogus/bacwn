@@ -3,7 +3,8 @@
   :url "http://www.fogus.me/"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.5.1"]]
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [com.cemerick/clojurescript.test "0.0.4"]]
   :plugins [[lein-cljsbuild "0.3.2"]
             [lein-marginalia "0.7.1"]]
   :extra-classpath-dirs ["checkouts/clojurescript/src/clj"
