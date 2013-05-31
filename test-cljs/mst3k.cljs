@@ -1,4 +1,4 @@
-(ns bacwn.example.mst3k
+(ns mst3k
   (:use [fogus.datalog.bacwn :as bacwn]
         [fogus.datalog.bacwn.macros :only (facts <- ?- make-database)]
         [fogus.datalog.bacwn.impl.rules :only (rules-set)]
@@ -56,4 +56,3 @@
    {'??loc "SoL"})
 
 ;;=> ({:location/name "SoL", :character/name "Crow"})
-
