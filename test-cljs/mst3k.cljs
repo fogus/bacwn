@@ -1,8 +1,8 @@
 (ns mst3k
-  (:use [fogus.datalog.bacwn :as bacwn]
-        [fogus.datalog.bacwn.macros :only (facts <- ?- make-database)]
-        [fogus.datalog.bacwn.impl.rules :only (rules-set)]
-        [fogus.datalog.bacwn.impl.database :only (add-tuples)]))
+  (:use-macros [fogus.datalog.bacwn.macros :only (facts <- ?- make-database)])
+  (:require [fogus.datalog.bacwn :as bacwn])
+  (:use [fogus.datalog.bacwn.impl.rules :only [rules-set]
+        [fogus.datalog.bacwn.impl.database :only [add-tuples]]]))
 
 (def mst3k-schema
   (make-database
@@ -50,9 +50,9 @@
 
 ;;=> ({:location/name "SoL", :character/name "Crow"})
 
-(q (?- :stationed-at :location/name '??loc :character/name ?char-name)
-   mst3k-db
-   non-human-locate-rule
-   {'??loc "SoL"})
+(bacwn/q (?- :stationed-at :location/name '??loc :character/name ?char-name)
+         mst3k-db
+         non-human-locate-rule
+         {'??loc "SoL"})
 
 ;;=> ({:location/name "SoL", :character/name "Crow"})

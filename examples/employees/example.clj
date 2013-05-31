@@ -15,6 +15,7 @@
 ;;  Converted to Clojure1.4 by Martin Trojer 2012.
 
 (ns bacwn.datalog.example
+  (:require [fogus.datalog.bacwn.impl.literals :as literals])
   (:use [fogus.datalog.bacwn :only (build-work-plan run-work-plan)]
         [fogus.datalog.bacwn.macros :only (<- ?- make-database)]
         [fogus.datalog.bacwn.impl.rules :only (rules-set)]
@@ -95,21 +96,36 @@
    (<- (:bj :name ?x :boss ?y) (:works-for :employee ?x :boss ?y)
        (not! :employee-job :employee ?y :job :pc-support))))
 
+
+(defn vec->map [v]
+  (reduce into (map vec (partition 2 v))))
+
+(defn ??- [n & args]
+  (literals/->AtomicLiteral n (vec->map args)
+   :fogus.datalog.bacwn.impl.literals/literal))
+
+(??- :works-for :employee '??name :boss '?x)
+
+(def wp-0 (build-work-plan rules (literals/->AtomicLiteral
+                                  :works-for {:boss '?x, :employee '??name}
+                                  :fogus.datalog.bacwn.impl.literals/literal)))
 (def wp-1 (build-work-plan rules (?- :works-for :employee '??name :boss ?x)))
 (def wp-2 (build-work-plan rules (?- :employee-job :employee '??name :job ?x)))
 (def wp-3 (build-work-plan rules (?- :bj :name '??name :boss ?x)))
 (def wp-4 (build-work-plan rules (?- :works-for :employee ?x :boss ?y)))
 
 
-  (run-work-plan wp-1 db {'??name "Albert"})
-  ;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
+(run-work-plan wp-0 db {'??name "Mary"})
 
-  (run-work-plan wp-2 db {'??name "Li"})
-  ;; ({:job :server-support, :employee "Li"} {:job :pc-support, :employee "Li"})
+(run-work-plan wp-1 db {'??name "Mary"})
+;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
 
-  (println (run-work-plan wp-3 db {'??name "Albert"}))
-  ;; ({:boss "Sameer", :name "Albert"})
+(run-work-plan wp-2 db {'??name "Li"})
+;; ({:job :server-support, :employee "Li"} {:job :pc-support, :employee "Li"})
 
-  (println (run-work-plan wp-4 db {}))
-  ;; ({:boss "Bob", :employee "Miki"} {:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Lilian"} {:boss "Bob", :employee "Li"} {:boss "Bob", :employee "Lilian"} {:boss "Fred", :employee "Brenda"} {:boss "Bob", :employee "Fred"} {:boss "Bob", :employee "John"} {:boss "Mary", :employee "John"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Sameer"} {:boss "Bob", :employee "Albert"} {:boss "Bob", :employee "Brenda"} {:boss "Bob", :employee "Mary"} {:boss "Sameer", :employee "Li"})
+(run-work-plan wp-3 db {'??name "Albert"})
+;; ({:boss "Sameer", :name "Albert"})
+
+(run-work-plan wp-4 db {})
+;; ({:boss "Bob", :employee "Miki"} {:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Lilian"} {:boss "Bob", :employee "Li"} {:boss "Bob", :employee "Lilian"} {:boss "Fred", :employee "Brenda"} {:boss "Bob", :employee "Fred"} {:boss "Bob", :employee "John"} {:boss "Mary", :employee "John"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Sameer"} {:boss "Bob", :employee "Albert"} {:boss "Bob", :employee "Brenda"} {:boss "Bob", :employee "Mary"} {:boss "Sameer", :employee "Li"})
 

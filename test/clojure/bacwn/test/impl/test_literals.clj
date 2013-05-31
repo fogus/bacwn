@@ -124,11 +124,6 @@
                 :term-bindings {:x '?x},
                 :literal-type :fogus.datalog.bacwn.impl.literals/literal})))
 
-(comment
-  (use 'clojure.contrib.stacktrace) (e)
-  (use :reload 'fogus.datalog.bacwn.impl.literals)
-)
-
 
 (def db1 (make-database
            (relation :fred [:x :y])
@@ -155,7 +150,7 @@
          [{'?x 2}]))
   (is (= (join-literal db2 lit3 [{'?x 1 '?y 2} {'?x 3 '?y 1}])
          [{'?x 3 '?y 1}])))
-         
+
 (deftest test-project-literal
   (is (= ((project-literal db2 lit4 [{'?x 1 '?y 3}{'?x 4 '?y 2}]) {:pred :joan :bound #{:x}})
          (datalog-relation
@@ -167,7 +162,7 @@
             {:x 1, :y 3}
             {:x 4, :y 2}
             }
-          
+
           ;; Indexes
           {
            :x
@@ -178,11 +173,3 @@
             #{{:x 1, :y 3}}
             }
            }))))
-
-
-
-(comment
-  (run-tests)
-)
-
-;; End of file
