@@ -1,5 +1,6 @@
 (ns fogus.datalog.bacwn.macros
   (:require [fogus.datalog.bacwn.impl.syntax :as syntax]
+            [fogus.datalog.bacwn.impl.database :as db]
             fogus.datalog.bacwn.impl.literals
             fogus.datalog.bacwn.impl.rules
             fogus.datalog.bacwn.impl.magic))
