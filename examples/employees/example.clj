@@ -15,6 +15,7 @@
 ;;  Converted to Clojure1.4 by Martin Trojer 2012.
 
 (ns bacwn.datalog.example
+  (:require [fogus.datalog.bacwn.impl.literals :as literals])
   (:use [fogus.datalog.bacwn :only (build-work-plan run-work-plan)]
         [fogus.datalog.bacwn.macros :only (<- ?- make-database)]
         [fogus.datalog.bacwn.impl.rules :only (rules-set)]
@@ -48,7 +49,7 @@
               [:employee :id 8  :name "Brenda" :position :sales]
               [:employee :id 9  :name "Miki"   :position :project-management]
               [:employee :id 10 :name "Albert" :position :technician]
-              
+
               [:boss :employee-id 2  :boss-id 1]
               [:boss :employee-id 3  :boss-id 2]
               [:boss :employee-id 4  :boss-id 1]
@@ -58,12 +59,12 @@
               [:boss :employee-id 8  :boss-id 7]
               [:boss :employee-id 9  :boss-id 1]
               [:boss :employee-id 10 :boss-id 6]
-              
+
               [:can-do-job :position :boss               :job :management]
               [:can-do-job :position :accountant         :job :accounting]
               [:can-do-job :position :chief-accountant   :job :accounting]
               [:can-do-job :position :programmer         :job :programming]
-              [:can-do-job :position :chief-programmer   :job :programming]           
+              [:can-do-job :position :chief-programmer   :job :programming]
               [:can-do-job :position :technician         :job :server-support]
               [:can-do-job :position :sales              :job :sales]
               [:can-do-job :position :project-management :job :project-management]
@@ -100,17 +101,16 @@
 (def wp-3 (build-work-plan rules (?- :bj :name '??name :boss ?x)))
 (def wp-4 (build-work-plan rules (?- :works-for :employee ?x :boss ?y)))
 
-(comment
-  (run-work-plan wp-1 db {'??name "Albert"})
-  ;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
 
-  (run-work-plan wp-2 db {'??name "Li"})
-  ;; ({:job :server-support, :employee "Li"} {:job :pc-support, :employee "Li"})
+(run-work-plan wp-1 db {'??name "Mary"})
+;;({:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Albert"})
 
-  (run-work-plan wp-3 db {'??name "Albert"})
-  ;; ({:boss "Sameer", :name "Albert"})
+(run-work-plan wp-2 db {'??name "Li"})
+;; ({:job :server-support, :employee "Li"} {:job :pc-support, :employee "Li"})
 
-  (run-work-plan wp-4 db {})
-  ;; ({:boss "Bob", :employee "Miki"} {:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Lilian"} {:boss "Bob", :employee "Li"} {:boss "Bob", :employee "Lilian"} {:boss "Fred", :employee "Brenda"} {:boss "Bob", :employee "Fred"} {:boss "Bob", :employee "John"} {:boss "Mary", :employee "John"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Sameer"} {:boss "Bob", :employee "Albert"} {:boss "Bob", :employee "Brenda"} {:boss "Bob", :employee "Mary"} {:boss "Sameer", :employee "Li"})
+(run-work-plan wp-3 db {'??name "Albert"})
+;; ({:boss "Sameer", :name "Albert"})
 
-)
+(run-work-plan wp-4 db {})
+;; ({:boss "Bob", :employee "Miki"} {:boss "Li", :employee "Albert"} {:boss "Sameer", :employee "Lilian"} {:boss "Bob", :employee "Li"} {:boss "Bob", :employee "Lilian"} {:boss "Fred", :employee "Brenda"} {:boss "Bob", :employee "Fred"} {:boss "Bob", :employee "John"} {:boss "Mary", :employee "John"} {:boss "Sameer", :employee "Albert"} {:boss "Bob", :employee "Sameer"} {:boss "Bob", :employee "Albert"} {:boss "Bob", :employee "Brenda"} {:boss "Bob", :employee "Mary"} {:boss "Sameer", :employee "Li"})
+

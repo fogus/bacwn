@@ -87,7 +87,7 @@
 
 (deftest test-tdb-3
   (is (empty? (evaluate-soft-work-set ws tdb-3 {}))))
-         
+
 
 
 ;;;;;;;;;;;
@@ -121,7 +121,7 @@
            [:employee :id 8  :name "Brenda" :position :sales]
            [:employee :id 9  :name "Miki"   :position :project-management]
            [:employee :id 10 :name "Albert" :position :technician]
-           
+
            [:boss :employee-id 2  :boss-id 1]
            [:boss :employee-id 3  :boss-id 2]
            [:boss :employee-id 4  :boss-id 1]
@@ -136,7 +136,7 @@
            [:can-do-job :position :accountant         :job :accounting]
            [:can-do-job :position :chief-accountant   :job :accounting]
            [:can-do-job :position :programmer         :job :programming]
-           [:can-do-job :position :chief-programmer   :job :programming]           
+           [:can-do-job :position :chief-programmer   :job :programming]
            [:can-do-job :position :technician         :job :server-support]
            [:can-do-job :position :sales              :job :sales]
            [:can-do-job :position :project-management :job :project-management]
@@ -180,7 +180,7 @@
   (is (= (evaluate-1 "John")
          #{{:employee "John", :boss "Bob"}
            {:employee "John", :boss "Mary"}})))
-         
+
 
 (def ws-2 (build-soft-strat-work-plan rules (?- :employee-job :employee '??name :job ?x)))
 (defn evaluate-2 [name] (set (evaluate-soft-work-set ws-2 db {'??name name})))

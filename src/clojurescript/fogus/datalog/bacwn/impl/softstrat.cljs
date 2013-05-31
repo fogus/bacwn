@@ -16,14 +16,15 @@
 ;;  Ported to ClojureScript by Fogus 2012.
 ;;
 
-(ns fogus.bacwn.datalog.impl.softstrat
-  (:require [fogus.bacwn.datalog.impl.util :as util]
-            [fogus.bacwn.datalog.impl.database :as db]
-            [fogus.bacwn.datalog.impl.literals :as literal]
-            [fogus.bacwn.datalog.impl.rules :as rule]
-            [fogus.bacwn.datalog.impl.magic :as magic]
-            [fogus.bacwn.datalog.impl.graph :as graph]
+(ns fogus.datalog.bacwn.impl.softstrat
+  (:require [fogus.datalog.bacwn.impl.util :as util]
+            [fogus.datalog.bacwn.impl.database :as db]
+            [fogus.datalog.bacwn.impl.literals :as literal]
+            [fogus.datalog.bacwn.impl.rules :as rule]
+            [fogus.datalog.bacwn.impl.magic :as magic]
+            [fogus.datalog.bacwn.impl.graph :as graph]
             clojure.set))
+
 ;; =============================
 ;; Dependency graph
 
@@ -154,4 +155,3 @@
            new-db (graph/fixed-point seeded-db fun nil equal)
            pt (magic/build-partial-tuple query bindings)]
        (db/select new-db (literal/literal-predicate query) pt))))
-

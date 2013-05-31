@@ -1,7 +1,13 @@
 (ns fogus.datalog.bacwn.macros
-  (:require fogus.datalog.bacwn.impl.literals
+  (:require [fogus.datalog.bacwn.impl.syntax :as syntax]
+            [fogus.datalog.bacwn.impl.database :as db]
+            fogus.datalog.bacwn.impl.literals
             fogus.datalog.bacwn.impl.rules
             fogus.datalog.bacwn.impl.magic))
+
+(defmacro facts [db & tuples]
+  `(db/add-tuples ~db
+    ~@(map syntax/explode tuples)))
 
 (defmacro make-database
   "Makes a database, like this
