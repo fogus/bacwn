@@ -1,4 +1,4 @@
-(defproject fogus/bacwn "0.3.0-SNAPSHOT"
+(defproject fogus/bacwn "0.3.0"
   :description "A Datalog for Clojure"
   :url "http://www.fogus.me/"
   :license {:name "Eclipse Public License"
