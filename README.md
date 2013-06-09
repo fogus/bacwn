@@ -16,7 +16,7 @@ To use Bacwn in your onw libraries, add the following to your dependencies:
 
 ### Leiningen
 
-    :dependencies [[fogus/bacwn "0.2.0"] ...]
+    :dependencies [[fogus/bacwn "0.3.0"] ...]
 
 ### Maven
 
@@ -25,7 +25,7 @@ Add the following to your `pom.xml` file:
     <dependency>
       <groupId>fogus</groupId>
       <artifactId>bacwn</artifactId>
-      <version>0.2.0</version>
+      <version>0.3.0</version>
     </dependency>
 
 ## License
