@@ -30,6 +30,7 @@ Add the following to your `pom.xml` file:
 
 ## License
 
+Copyright © 2009 Jeffrey Straszheim
 Copyright © 2012, 2013 Fogus
 
 Distributed under the Eclipse Public License, the same as Clojure.
