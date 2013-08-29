@@ -12,7 +12,7 @@ The Bacwn Datalog library is based on the old Clojure-contrib datalog implementa
 
 Caveat emptor. Bacwn is a work in progress and should be considered alpha software.  The ClojureScript port does not currently work - patches welcomed.
 
-To use Bacwn in your onw libraries, add the following to your dependencies:
+To use Bacwn in your own libraries, add the following to your dependencies:
 
 ### Leiningen
 
