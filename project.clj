@@ -1,4 +1,4 @@
-(defproject fogus/bacwn "0.4.0-SNAPSHOT"
+(defproject fogus/bacwn "0.4.0"
   :description "A Datalog for Clojure"
   :url "http://www.fogus.me/"
   :license {:name "Eclipse Public License"
@@ -9,7 +9,7 @@
             [lein-marginalia "0.7.1"]]
   :extra-classpath-dirs ["checkouts/clojurescript/src/clj"
                          "checkouts/clojurescript/src/cljs"]
-  :source-paths ["src/clojure"]
+  :source-paths ["src/clojure" "src/clojurescript"]
   :test-paths ["test/clojure"]
   :cljsbuild {:test-commands {"unit-tests" ["phantomjs" "runner.js" "target/unit-test.js"]}
               :builds
