@@ -16,7 +16,7 @@ To use Bacwn in your own libraries, add the following to your dependencies:
 
 ### Leiningen
 
-    :dependencies [[fogus/bacwn "0.3.0"] ...]
+    :dependencies [[fogus/bacwn "0.4.0"] ...]
 
 ### Maven
 
@@ -25,12 +25,12 @@ Add the following to your `pom.xml` file:
     <dependency>
       <groupId>fogus</groupId>
       <artifactId>bacwn</artifactId>
-      <version>0.3.0</version>
+      <version>0.4.0</version>
     </dependency>
 
 ## License
 
 Copyright © 2009 Jeffrey Straszheim
-Copyright © 2012, 2013 Fogus
+Copyright © 2012-2014 Fogus
 
 Distributed under the Eclipse Public License, the same as Clojure.
