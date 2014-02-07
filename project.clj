@@ -3,8 +3,9 @@
   :url "http://www.fogus.me/"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.5.1"]
+  :dependencies [[org.clojure/clojure "1.6.0-master-SNAPSHOT"]
                  [com.cemerick/clojurescript.test "0.0.4"]]
+  :repositories {"sonatype-oss-public" "https://oss.sonatype.org/content/groups/public/"}
   :plugins [[lein-cljsbuild "0.3.2"]
             [lein-marginalia "0.7.1"]]
   :extra-classpath-dirs ["checkouts/clojurescript/src/clj"

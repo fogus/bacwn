@@ -12,3 +12,4 @@ pom.xml
 resources/js/*
 .DS_Store
 node_modules
+.lein*
