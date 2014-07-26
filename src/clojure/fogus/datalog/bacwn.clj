@@ -4,6 +4,7 @@
             [fogus.datalog.bacwn.impl.rules :as rules]
             [fogus.datalog.bacwn.impl.softstrat :as soft]
             [fogus.datalog.bacwn.impl.syntax :as syntax]
+            [fogus.datalog.bacwn.transactor.read]
             clojure.set))
 
 (defrecord WorkPlan
