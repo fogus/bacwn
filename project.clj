@@ -5,7 +5,9 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2307"]
-                 [com.cemerick/clojurescript.test "0.3.1"]]
+                 [com.cemerick/clojurescript.test "0.3.1"]
+                 [org.clojure/core.async "0.1.303.0-886421-alpha"]
+                 [com.ydn/db "1.0.3"]]
   :repositories {"sonatype-oss-public" "https://oss.sonatype.org/content/groups/public/"}
   :plugins [[lein-cljsbuild "1.0.3"]
             [lein-marginalia "0.7.1"]]
