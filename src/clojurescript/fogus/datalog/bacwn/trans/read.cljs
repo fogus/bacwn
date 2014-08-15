@@ -12,7 +12,8 @@
 
 (defn db-new
   "Takes a string and creates a YDN clientside database with the given name. Use a
-   unique name to avoid collisions with other projects (they will overwrite)."
+   unique name to avoid collisions with other projects (they will overwrite each
+   other)."
   [name]
   {:pre [(string? name)]}
   (def db (new js/ydn.db.Storage name clientside-schema))
@@ -48,17 +49,15 @@
 
 (defn add-tuples!
   "Adds and saves tuples to a bacwn database."
-  [name schema & tupls]
-  (let [new-db (apply database/add-tuples schema tupls)]
+  [name db & tupls]
+  (let [new-db (apply database/add-tuples db tupls)]
     (put! db-chan [name new-db])
     new-db))
 
-;; TODO: remove-tuples instead?
-;; FIXME: get tuples to store!
 (defn remove-tuples!
   "Removes and saves tuples from a bacwn database."
-  [name schema tupls]
-  (let [new-db (database/remove-tuple schema tupls)]
+  [name db & tupls]
+  (let [new-db (apply database/remove-tuples db tupls)]
     (put! db-chan [name new-db])
     new-db))
 

@@ -3,7 +3,7 @@
   (:require [fogus.datalog.bacwn :as bacwn]
             [fogus.datalog.bacwn.impl.rules :as r]
             [fogus.datalog.bacwn.impl.database :as database]
-            [fogus.datalog.bacwn.transactor.read :as tr]))
+            [fogus.datalog.bacwn.trans.read :as tr]))
 
 ;; Create a new clientside database to store bacwn datums.
 (defonce fams
@@ -60,8 +60,6 @@
        (:parent :ancestor ?x :child ?z)
        (:male :person ?x))))
 
-;; Would it be helpful to have build-work-plan cache the work plan? This is simple
-;; to cache.
 (def wp-1 (bacwn/build-work-plan rules (?- :father :dad ?x :child '??name)))
 (def wp-2 (bacwn/build-work-plan rules (?- :mother :mom ?x :child '??name)))
 (def wp-3 (bacwn/build-work-plan rules (?- :grandpa :gramps ?x :grandchild '??name)))
