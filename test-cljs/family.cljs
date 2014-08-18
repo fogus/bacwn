@@ -1,4 +1,4 @@
-(ns example
+(ns family
   (:use-macros [fogus.datalog.bacwn.macros :only (<- ?- make-database)])
   (:require [fogus.datalog.bacwn :as bacwn]
             [fogus.datalog.bacwn.impl.rules :as r]

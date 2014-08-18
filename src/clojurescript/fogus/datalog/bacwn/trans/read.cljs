@@ -28,13 +28,21 @@
 (defn- parse-tuples
   "Helper fn to parse bacwn databases."
   [tupls]
-  (let [rel-name (first (keys tupls))]
-    (reduce #(conj %1 (reduce (fn [a b]
-                                  (conj a (first b) (second b)))
-                                [rel-name] %2))
-              []
-              (get-in tupls [rel-name :data]))))
+  (loop [rel-name (keys tupls) acc []]
+    (if-not (seq rel-name)
+      (into [] (filter #(not-empty %) acc))
+      (recur (rest rel-name)
+             (conj acc (reduce #(conj %1 (reduce (fn [a b]
+                                                   (apply conj a b))
+                                                 [(first rel-name)] %2))
+                               []
+                               (get-in tupls [(first rel-name) :data])))))))
 
+
+;;FIXME: if a database is not defined before (read gets called, bacwn will
+;;  not know the global variable db that comes from (db-new. This causes
+;;  casues weird problems. Is there any way to avoid setting the global
+;;  variable?
 (defn- read
   "Main loop that saves the bacwn database whenever it is edited in memory."
   []
@@ -42,9 +50,8 @@
     (let [datums (parse-tuples v)
           obj (clj->js {:name name
                         :value (pr-str datums)})]
-      (do
-        (.clear db "database" (js/ydn.db.KeyRange.only name))
-        (.add db "database" obj)))
+      (.clear db "database" (js/ydn.db.KeyRange.only name))
+      (.add db "database" obj))
     (recur (<! db-chan))))
 
 (defn add-tuples!
@@ -80,5 +87,5 @@
                                     (:value)
                                     (reader/read-string))]
                         (def var#
-                          (apply add-tuples! name schema obj)))))))
+                          (apply add-tuples! name schema (first obj))))))))
   var#)
