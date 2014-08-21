@@ -19,7 +19,8 @@
 (ns fogus.datalog.bacwn.impl.literals
   (:require [fogus.datalog.bacwn.impl.util :as util]
             [fogus.datalog.bacwn.impl.database :as db]
-            clojure.set))
+            clojure.set
+            cljs.reader))
 
 ;; =============================
 ;; Type Definitions

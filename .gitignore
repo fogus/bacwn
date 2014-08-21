@@ -13,3 +13,11 @@ resources/js/*
 .DS_Store
 node_modules
 .lein*
+/junk
+/index.html
+/js
+/out
+.repl
+.nrepl-port
+/bacwn.js
+dev

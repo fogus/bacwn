@@ -140,6 +140,14 @@
          (let [idxs (remove-from-indexes (:indexes rel) tuple)]
            (assoc rel :data new-data :indexes idxs))))))
 
+(defn remove-tuples
+  "Removes a collection of tuples from the db, as
+   (remove-tuples db
+      [:rel-name :key-1 1 :key-2 2]
+      [:rel-name :key-1 2 :key-2 3])"
+  [db & tupls]
+  (reduce #(remove-tuple %1 (first %2) (apply hash-map (next %2))) db tupls))
+
 (defn add-tuples
   "Adds a collection of tuples to the db, as
    (add-tuples db
