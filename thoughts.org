@@ -2,5 +2,10 @@
 
 /Bacwn is a simple Datalog engine for Clojure./
 
+** Goals
+
+- Instructive codebase (learn and teach)
+- CLJS
+
 
 
