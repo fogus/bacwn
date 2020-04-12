@@ -1,0 +1,6 @@
+* Bacwn
+
+/Bacwn is a simple Datalog engine for Clojure./
+
+
+
