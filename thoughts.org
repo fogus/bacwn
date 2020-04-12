@@ -7,5 +7,18 @@
 - Instructive codebase (learn and teach)
 - CLJS
 
+** References / Influences
+
+- TBD
+
+** Tasks
+
+*** TODO Get CLJS dev env working
+*** TODO Make work with CLJS
+
+
+
+
+
 
 
