@@ -34,13 +34,17 @@
  {'??loc "SoL"})
 ;; ({:location/name "SoL", :character/name "Crow"} {:location/name "SoL", :character/name "Joel"})
 
+(q (?- :stationed-at :location/name '??loc :character/name ?char-name)
+   mst3k-db
+   locate-rule
+   {'??loc "SoL"})
 
 (def non-human-locate-rule
   (rules-set
    (<- (:stationed-at :location/name ?loc-name :character/name ?char-name)
        (:location  :name ?loc-name :character ?char)
-       (:character :character/db.id ?char :name ?char-name)
-       (not! :character :character/db.id ?char :human? true))))
+       (:character :db.id ?char :name ?char-name)
+       (not! :character :db.id ?char :human? true))))
 
 (bacwn/run-work-plan
  (bacwn/build-work-plan non-human-locate-rule
